@@ -1,0 +1,39 @@
+.data-sharing-instructor-write-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px; /* 최대 너비를 지정하여 백그라운드 크기를 조정 */
+    margin: auto; /* 중앙 정렬 */
+}
+
+.data-sharing-instructor-write-title {
+    color: #0C1844;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control, .form-control-file {
+    border-radius: 5px;
+    width: 100%;
+}
+
+.data-sharing-instructor-write-submit-btn, .data-sharing-instructor-write-cancel-btn {
+    border: 1px solid #0C1844;
+    color: #0C1844;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0 10px;
+    width: 150px; /* 버튼의 가로 길이를 더 크게 설정 */
+    height: 38px; /* 버튼의 높이를 설정 */
+    border-radius: 7px; /* 버튼 모서리를 둥글게 */
+    text-decoration: none; /* 버튼 글자 밑줄 제거 */
+    text-align: center; /* 버튼 텍스트를 가운데 정렬 */
+    line-height: 1.5; /* 텍스트 세로 가운데 정렬 */
+}
+
+.data-sharing-instructor-write-submit-btn:hover, .data-sharing-instructor-write-cancel-btn:hover {
+    background-color: #0C1844;
+    color: white;
+}

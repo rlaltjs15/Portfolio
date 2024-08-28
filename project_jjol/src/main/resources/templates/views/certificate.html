@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main_layout}">
+
+<body>
+    <th:block layout:fragment="content">
+        <div id="certificate-container-certificate">
+            <img th:src="@{/images/mainlogo.png}" alt="Logo" class="certificate-logo-certificate">
+            <div class="certificate-header-certificate">
+                Certificate of Completion
+            </div>
+            <div class="certificate-body-certificate">
+                <p>This is to certify that</p>
+                <h2 th:text="${user.name}">[Student Name]</h2>
+                <p>has successfully completed the course</p>
+                <h3 th:text="${lecture.lectureTitle}">[Course Title]</h3>
+                <p>on</p>
+                <p th:text="${certificate.issueDate}">[Issue Date]</p>
+            </div>
+            <div class="certificate-signature-certificate">
+                <div>
+                    <div class="certificate-signature-line-certificate"></div>
+                    <p th:text="'Instructor: ' + ${lecture.instructorName}">Instructor: [Instructor]</p>
+                </div>
+                <div>
+                    <div class="certificate-signature-line-certificate"></div>
+                    <p>Director: JJol Education</p>
+                </div>
+            </div>
+            <div class="certificate-footer-certificate">
+                <p>JJol Online Learning Platform</p>
+                <img th:src="@{/images/artlogo-co.png}" alt="signature" class="certificate-footer-image">
+            </div>
+            <div class="certificate-watermark-certificate">JJol</div>
+        </div>
+        <div class="certificate-button-container">
+            <button type="button" class="certificate-print-button-certificate" onclick="printCertificate()">수료증 인쇄</button>
+        </div>
+    </th:block>
+</body>
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JJOL EDU</title>
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+	rel="stylesheet">
+<link href="/css/styles.css" rel="stylesheet">
+
+<link href="//vjs.zencdn.net/7.10.2/video-js.min.css" rel="stylesheet">
+<script src="//vjs.zencdn.net/7.10.2/video.min.js"></script>
+
+<script src="/js/jquery-3.7.1.min.js"></script>
+
+<script
+	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-content {
+	display: grid;
+	grid-template-columns: 3fr 0fr;
+	grid-template-rows: auto 1fr;
+	width: 100%;
+	height: 100%;
+	transition: grid-template-columns 0.3s ease;
+}
+
+.navbar {
+	grid-column: 1/-1;
+}
+
+.video-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	overflow: hidden;
+	background-color: #0C1844;
+}
+
+video {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.right-column {
+	height: 100%;
+	display: none;
+	flex-direction: column;
+	padding: 20px;
+	overflow-y: auto;
+	background-color: #f1f3f5;
+	border-left: 1px solid #ccc;
+	width: calc(100% - 80px); /* 아이콘 버튼의 너비를 고려하여 오른쪽 패널의 너비를 조정 */
+	transition: transform 0.3s ease;
+}
+
+.right-column.show {
+	display: flex;
+	transform: translateX(0);
+}
+
+.content-section {
+	display: none;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.content-section.active {
+	display: block;
+	opacity: 1;
+}
+
+/* 아이콘 버튼 스타일 수정 */
+.icon-buttons {
+	position: fixed;
+	top: 56px;
+	right: 0;
+	width: 80px; /* 넓이를 넓힘 */
+	height: calc(100% - 56px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f8f9fa;
+	border-left: 1px solid #ccc;
+	padding: 10px 0;
+	z-index: 1000;
+}
+
+.icon-buttons div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	margin: 10px 0;
+	cursor: pointer;
+	font-size: 24px; /* 아이콘 크기 증가 */
+	color: #0C1844; /* 색상 변경 */
+	background-color: #fff;
+	border-radius: 8px; /* 원에서 사각형으로 변경 */
+	transition: background-color 0.3s, color 0.3s;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon-buttons div:hover {
+	background-color: #e9ecef;
+	color: #007bff;
+}
+
+.icon-buttons i {
+	font-size: 24px;
+}
+
+.section-title {
+	font-weight: bold;
+	margin-top: 20px;
+	color: #0C1844;
+}
+
+.lecture {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.lecture:hover {
+	background-color: #e9ecef;
+}
+
+.lecture-title {
+	flex: 1;
+	font-size: 16px;
+	color: #0C1844;
+}
+
+.lecture-duration {
+	width: 50px;
+	text-align: right;
+}
+
+.lecture-inform, .note, .community {
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+}
+
+.note-list, .community-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* 수직 정렬을 위해 수정 */
+    justify-content: flex-start; /* 상단부터 정렬 */
+    color: #888; /* 색상 변경 */
+    font-size: 16px; /* 글씨 크기 조정 */
+}
+
+.note-item, .community-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px; /* 리스트 간격 조정 */
+    padding: 15px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-item:hover, .community-item:hover {
+    background-color: #f1f1f1;
+}
+
+.note-header, .community-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-title, .community-title {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0C1844;
+    margin: 0;
+}
+
+.note-content, .community-content {
+    margin-top: 10px;
+    display: none;
+    font-size: 16px;
+    color: #333;
+}
+
+.note-date, .community-meta {
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px;
+}
+
+.delete-note-button, .delete-community-button {
+    background: transparent;
+    border: none;
+    color: #0C1844;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.delete-note-button:hover i, .delete-community-button:hover i {
+    color: #e74c3c;
+}
+
+#noteTitle, #noteContent, #postTitle, #postContent {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 14px;
+}
+
+#saveNoteButton, #savePostButton {
+    background-color: transparent;
+    border: 2px solid #0C1844;
+    padding: 10px 20px;
+    color: #0C1844;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#saveNoteButton:hover, #savePostButton:hover {
+    background-color: #0C1844;
+    color: white;
+}
+
+.curriculum h2, .note h2, .community h2 {
+    color: #0C1844;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+</style>
+</head>
+<body th:data-lecture-id="${lecture.lectureId}">
+	<div class="icon-buttons">
+		<div id="curriculumButton">
+			<i class="fas fa-list"></i>
+		</div>
+		<div id="noteButton">
+			<i class="fas fa-book"></i>
+		</div>
+		<div id="communityButton">
+			<i class="fas fa-comments"></i>
+		</div>
+	</div>
+
+	<div class="main-content" id="mainContent">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand ms-5" href="/">JJol</a>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link ms-5" href="javascript:history.back()">강의 정보</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="video-section">
+			<video id="my-video" class="vjs-matrix video-js" controls
+				preload="auto"
+				data-setup='{"playbackRates": [2, 1.5, 1.25, 1, 0.75, 0.5]}'
+				autoplay>
+				<source id="video-source" th:src="@{${firstChapterUrl}}"
+					type="video/mp4">
+				<p class="vjs-no-js">이 강의를 보려면 JavaScript를 활성화하고 웹 브라우저를 업그레이드해야
+					할 것 같아요!!</p>
+			</video>
+		</div>
+		<div class="right-column" id="rightColumn">
+			<div id="curriculum" class="content-section curriculum">
+				<div class="lecture-inform">
+					<h2 class="my-3">📚 강의 소개</h2>
+					<div class="lecture-title mb-3">
+						<h4 th:text="${lecture.lectureTitle}">강의 제목</h4>
+					</div>
+					<div class="lecture-teacher">
+						<h5 th:text="'강사 : ' + ${lecture.instructorName}">강사</h5>
+					</div>
+					<div class="lecture-teacher">
+						<h5 id="progress-info">진도율 : 0%</h5>
+					</div>
+					<div class="lecture-teacher">
+						<h5 id="current-time-display">시간 : 0분/0분</h5>
+					</div>
+					<div></div>
+
+					<div class="lecture-progress">
+						<div></div>
+						<div class="progress" role="progressbar"
+							aria-label="lecture-progress" aria-valuenow="0" aria-valuemin="0"
+							aria-valuemax="100">
+							<div id="progress-bar" class="progress-bar w-0"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="lecture-sections" th:each="chapter : ${chapters}">
+					<div class="section-title"
+						th:text="'챕터 ' + ${chapter.chapterOrder} + ': ' + ${chapter.chapterTitle}">섹션
+						제목</div>
+					<div class="lecture" th:data-chapter-id="${chapter.chapterId}"
+						th:data-url="${chapter.chapterUrl}"
+						th:data-chapter-order="${chapter.chapterOrder}">
+						<span class="lecture-title" th:text="${chapter.chapterTitle}">강의
+							제목</span>
+					</div>
+				</div>
+			</div>
+			<div id="note" class="content-section">
+				<h2>📚 학습 노트</h2>
+				<hr>
+				<div id="noteList" class="note-list">
+					<div th:each="note : ${notes}">
+						<div class="note-item">
+							<div class="note-header">
+								<p th:text="${note.noteTitle}" class="note-title"
+									onclick="toggleNoteContent(this)">노트 제목</p>
+								<button class="btn btn-danger btn-sm delete-note-button"
+									th:data-note-id="${note.noteId}">삭제</button>
+							</div>
+							<div class="note-content" style="display: none;">
+								<p th:text="${note.noteContent}">노트 내용</p>
+							</div>
+							<p class="note-date"
+								th:text="${#dates.format(note.createdAt, 'yyyy-MM-dd HH:mm:ss')}">작성
+								시간</p>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="form-group">
+					<label for="noteTitle">노트 제목</label> <input type="text"
+						id="noteTitle" class="form-control">
+					<div id="noteTitleError" class="error-message"></div>
+					<!-- 유효성 검사 메시지 추가 -->
+				</div>
+				<div class="form-group">
+					<label for="noteContent">노트 작성</label>
+					<textarea id="noteContent" class="form-control"></textarea>
+					<div id="noteContentError" class="error-message"></div>
+					<!-- 유효성 검사 메시지 추가 -->
+				</div>
+				<div class="text-end">
+					<button id="saveNoteButton" class="btn btn-outline-primary">저장</button>
+				</div>
+			</div>
+			<div id="community" class="content-section">
+				<h2>💬 커뮤니티</h2>
+				<hr>
+				<div id="communityList" class="community-list">
+					<!-- 커뮤니티 게시물 리스트가 여기에 추가됩니다. -->
+				</div>
+				<hr>
+				<div class="form-group">
+					<label for="postTitle">게시물 제목</label> <input type="text"
+						id="postTitle" class="form-control">
+					<div id="postTitleError" class="error-message"></div>
+					<!-- 유효성 검사 메시지 추가 -->
+				</div>
+				<div class="form-group">
+					<label for="postContent">게시물 내용</label>
+					<textarea id="postContent" class="form-control"></textarea>
+					<div id="postContentError" class="error-message"></div>
+					<!-- 유효성 검사 메시지 추가 -->
+				</div>
+				<div class="text-end">
+					<button id="savePostButton" class="btn btn-outline-primary">저장</button>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+//노트의 내용을 토글하는 함수
+function toggleNoteContent(element) {
+    $(element).closest('.note-item').find('.note-content').toggle();
+}
+
+// 커뮤니티 게시물의 내용을 토글하는 함수
+function toggleCommunityContent(element) {
+    $(element).closest('.community-item').find('.community-content').toggle();
+}
+
+// DOM이 완전히 로드된 후 실행되는 함수
+document.addEventListener("DOMContentLoaded", function() {
+    const lectureId = document.body.getAttribute("data-lecture-id"); // 현재 강의 ID
+    let currentChapterOrder = 1; // 초기 챕터 순서
+    let player; // 비디오 플레이어 객체
+    const totalChapters = document.querySelectorAll('.lecture').length; // 전체 챕터 수
+
+    // 특정 강의와 챕터의 마지막 시청 시간과 전체 길이를 가져오는 함수
+    async function fetchLastViewedTimeAndDuration(lectureId, chapterId) {
+        try {
+            const response = await fetch(`/lecturePage/${lectureId}/${chapterId}`);
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+            console.log("Fetched data:", data);  // 디버그 메시지 추가
+            if (!data.lecturePage) {
+                throw new Error("Invalid JSON structure");
+            }
+            return { startTime: data.lecturePage.startTime ?? 0, duration: data.lecturePage.duration ?? 0 };
+        } catch (error) {
+            console.error("fetch 작업에 문제가 발생했습니다:", error);
+            return { startTime: 0, duration: 0 };
+        }
+    }
+    
+ 	// 특정 강의의 마지막 시청한 챕터와 시청 시간을 가져오는 함수
+    async function fetchLastViewedTimeAndChapter(lectureId) {
+        try {
+            const response = await fetch(`/lecturePage/${lectureId}/lastViewed`);
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+            console.log("데이터 정상");
+            return { lastChapterOrder: data.chapterOrder ?? 1, startTime: data.startTime ?? 0 };
+        } catch (error) {
+            console.error("fetch 작업에 문제가 발생했습니다:", error);
+            return { lastChapterOrder: 1, startTime: 0 };
+        }
+    }
+
+
+
+ // 현재 시청 시간을 서버에 저장하는 함수
+    async function saveCurrentTime(lectureId, chapterId, currentTime, currentChapterOrder) {
+        try {
+            const response = await fetch('/lecturePage/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    lectureId: lectureId,
+                    chapterId: chapterId,
+                    startTime: currentTime,
+                    lastChapterOrder: currentChapterOrder // 추가된 파라미터
+                })
+            });
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+        } catch (error) {
+            console.error("There was a problem with the save operation:", error);
+        }
+    }
+
+    // 강의의 시청 진행 상황을 초기화하는 함수
+    async function resetLectureProgress(lectureId) {
+        try {
+            const response = await fetch(`/lecturePage/reset/${lectureId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+        } catch (error) {
+            console.error("There was a problem with the reset operation:", error);
+        }
+    }
+
+ 	// 진행 바를 업데이트하는 함수
+    function updateProgressBar() {
+        let progressPercentage = ((currentChapterOrder) / totalChapters) * 100;
+        if (currentChapterOrder === totalChapters) {
+            progressPercentage = 100; // 마지막 챕터가 끝나면 100%로 설정
+        }
+        console.log("Updating progress bar:", progressPercentage); // 콘솔 로그 추가
+        document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+        document.getElementById('progress-info').innerText = `진도율 : ${Math.round(progressPercentage)}%`;
+    }
+
+    // 시간을 포맷팅하는 함수 (초를 시:분:초 형태로 변환)
+    function formatTime(seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = Math.floor(seconds % 60);
+        return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    // 강의의 총 길이를 계산하는 함수
+    async function calculateTotalDuration() {
+        let totalDuration = 0;
+        for (let chapter of document.querySelectorAll('.lecture')) {
+            const chapterId = chapter.getAttribute('data-chapter-id');
+            const { duration } = await fetchLastViewedTimeAndDuration(lectureId, chapterId);
+            totalDuration += duration;
+        }
+        return totalDuration;
+    }
+
+ 	// 현재 시청 시간을 업데이트하는 함수
+    function updateCurrentTimeDisplay(currentTime, totalDuration) {
+        const currentChapterDisplay = `강의 : ${currentChapterOrder} / ${totalChapters}`;
+        console.log("Updating current time display:", currentChapterDisplay); // 콘솔 로그 추가
+        document.getElementById('current-time-display').innerText = `${currentChapterDisplay}`;
+    }
+
+    // 모든 챕터의 시청 기록을 초기화하는 함수
+    async function resetAllChapters(lectureId) {
+        try {
+            const response = await fetch(`/lecturePage/reset/${lectureId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const data = await response.json(); // JSON 응답 처리
+            if (data.status !== "success") {
+                throw new Error("Failed to reset chapters");
+            }
+        } catch (error) {
+            console.error("There was a problem with the reset operation:", error);
+        }
+    }
+
+ // 비디오 플레이어를 초기화하는 함수
+    async function initializePlayer() {
+        if (!player) {
+            player = videojs('my-video', {
+                controls: true,
+                autoplay: false,
+                preload: 'auto'
+            });
+
+            const { lastChapterOrder, startTime } = await fetchLastViewedTimeAndChapter(lectureId);
+
+            console.log(lastChapterOrder);
+
+            if (startTime > 0) {
+                const resumeFromLastTime = confirm("마지막 시청 지점부터 재생하시겠습니까?");
+                if (resumeFromLastTime) {
+                    currentChapterOrder = lastChapterOrder;
+                    loadChapter(currentChapterOrder, startTime);
+                } else {
+                    await resetLectureProgress(lectureId);
+                    loadChapter(1, 0);
+                }
+            } else {
+                loadChapter(1, 0);
+            }
+
+            player.on('timeupdate', function() {
+                const currentTime = player.currentTime();
+                const chapterElement = document.querySelector(`.lecture[data-chapter-order="${currentChapterOrder}"]`);
+                const chapterId = chapterElement.getAttribute('data-chapter-id');
+                saveCurrentTime(lectureId, chapterId, currentTime, currentChapterOrder);
+                updateCurrentTimeDisplay(currentTime, player.duration());
+                updateProgressBar();
+            });
+
+            player.on('ended', function() {
+                currentChapterOrder++;
+                if (currentChapterOrder > totalChapters) {
+                    currentChapterOrder = totalChapters;
+                } else {
+                    loadChapter(currentChapterOrder, 0);
+                }
+                updateProgressBar();
+            });
+            updateProgressBar();
+            const { startTime: totalDuration } = await calculateTotalDuration();
+            updateCurrentTimeDisplay(player.currentTime(), totalDuration); 
+        }
+    }
+
+ // 특정 챕터를 로드하고 시작 시간을 설정하는 함수
+    async function loadChapter(chapterOrder, startTime) {
+        const chapterElement = document.querySelector(`.lecture[data-chapter-order="${chapterOrder}"]`);
+        if (!chapterElement) {
+            console.error(`Chapter element with order ${chapterOrder} not found`);
+            return;
+        }
+        const videoUrl = chapterElement.getAttribute('data-url');
+        player.src({ type: 'video/mp4', src: videoUrl });
+        player.ready(function() {
+            player.currentTime(startTime);
+            player.play();
+        });
+    }
+
+    // 각 챕터 요소에 클릭 이벤트를 추가하는 함수
+    document.querySelectorAll('.lecture').forEach(function(lectureElement) {
+        lectureElement.addEventListener('click', function() {
+            currentChapterOrder = parseInt(this.getAttribute('data-chapter-order'));
+            loadChapter(currentChapterOrder);
+        });
+    });
+
+ // 섹션 토글 함수 수정
+    function toggleSection(sectionId) {
+        const mainContent = $('#mainContent');
+        const rightColumn = $('#rightColumn');
+        const sections = $('.content-section');
+        const activeSection = $(`#${sectionId}`);
+
+        if (activeSection.hasClass('active')) {
+            activeSection.removeClass('active');
+            rightColumn.removeClass('show'); // 'show' 클래스 제거
+            mainContent.css('grid-template-columns', '3fr 0fr');
+        } else {
+            sections.removeClass('active');
+            activeSection.addClass('active');
+            rightColumn.addClass('show'); // 'show' 클래스 추가
+            mainContent.css('grid-template-columns', '3fr 1fr'); // 오른쪽 패널을 포함하도록 조정
+        }
+    }
+
+    // 이벤트 리스너 등록
+    $('#curriculumButton').click(function() {
+        toggleSection('curriculum');
+    });
+
+    $('#noteButton').click(function() {
+        toggleSection('note');
+        loadNotes();
+    });
+
+    $('#communityButton').click(function() {
+        toggleSection('community');
+        loadLectureCommunities();
+    });
+
+ // 노트를 로드하는 함수
+    function loadNotes() {
+        $.get(`/notes/${lectureId}`, function(notes) {
+            $('#noteList').empty();
+            if (notes.length === 0) {
+                $('#noteList').append('<div>작성된 노트가 없습니다.</div>');
+            } else {
+                notes.forEach(note => {
+                    $('#noteList').append(
+                        `<div class="note-item" data-note-id="${note.noteId}">
+                            <div class="note-header">
+                                <p class="note-title" onclick="toggleNoteContent(this)">${note.noteTitle}</p>
+                                <button class="delete-note-button" data-note-id="${note.noteId}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                            <div class="note-content" style="display: none;">
+                                <p>${note.noteContent}</p>
+                            </div>
+                            <p class="note-date">${new Date(note.createdAt).toLocaleDateString('ko-KR')} ${new Date(note.createdAt).toLocaleTimeString('ko-KR')}</p>
+                        </div>`
+                    );
+                });
+            }
+        });
+    }
+
+ // 커뮤니티 게시물을 로드하는 함수
+    function loadLectureCommunities() {
+        $.get(`/community/${lectureId}`, function(posts) {
+            $('#communityList').empty();
+            if (posts.length === 0) {
+                $('#communityList').append('<div>등록된 게시글이 없습니다.</div>');
+            } else {
+                posts.forEach(post => {
+                    $('#communityList').append(
+                        `<div class="community-item" data-post-id="${post.postId}">
+                            <div class="community-header">
+                                <p class="community-title" onclick="toggleCommunityContent(this)">${post.postTitle}</p>
+                                <button class="delete-community-button" data-post-id="${post.postId}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                            <div class="community-content" style="display: none;">
+                                <p>${post.postContent}</p>
+                            </div>
+                            <p class="community-meta">${new Date(post.createdAt).toLocaleDateString('ko-KR')} ${new Date(post.createdAt).toLocaleTimeString('ko-KR')}</p>
+                        </div>`
+                    );
+                });
+            }
+        });
+    }
+
+ // 유효성 검사 함수
+    function validateInput(input, errorElement, message) {
+        if (input.val().trim() === '') {
+            errorElement.text(message);
+            return false;
+        } else {
+            errorElement.text('');
+            return true;
+        }
+    }
+
+    // 노트 저장 버튼 클릭 이벤트
+    $('#saveNoteButton').click(function() {
+        const noteTitle = $('#noteTitle');
+        const noteContent = $('#noteContent');
+        const noteTitleError = $('#noteTitleError');
+        const noteContentError = $('#noteContentError');
+
+        const isTitleValid = validateInput(noteTitle, noteTitleError, '노트 제목을 입력해주세요.');
+        const isContentValid = validateInput(noteContent, noteContentError, '노트 내용을 입력해주세요.');
+
+        if (isTitleValid && isContentValid) {
+            $.post('/notes/add', { lectureId, noteTitle: noteTitle.val(), noteContent: noteContent.val() })
+                .done(function(response) {
+                    if (response === 'success') {
+                        loadNotes();
+                        noteTitle.val('');
+                        noteContent.val('');
+                    }
+                })
+                .fail(function(xhr) {
+                    if (xhr.status === 403) {
+                        alert('로그인이 필요합니다.');
+                        window.location.href = '/login';
+                    }
+                });
+        }
+    });
+
+ // 커뮤니티 게시물 저장 버튼 클릭 이벤트
+    $('#savePostButton').click(function() {
+        const postTitle = $('#postTitle');
+        const postContent = $('#postContent');
+        const postTitleError = $('#postTitleError');
+        const postContentError = $('#postContentError');
+
+        const isTitleValid = validateInput(postTitle, postTitleError, '게시물 제목을 입력해주세요.');
+        const isContentValid = validateInput(postContent, postContentError, '게시물 내용을 입력해주세요.');
+
+        if (isTitleValid && isContentValid) {
+            $.post('/community/add', { lectureId, postTitle: postTitle.val(), postContent: postContent.val() })
+                .done(function(response) {
+                    if (response === 'success') {
+                        loadLectureCommunities();
+                        postTitle.val('');
+                        postContent.val('');
+                    }
+                })
+                .fail(function(xhr) {
+                    if (xhr.status === 403) {
+                        alert('로그인이 필요합니다.');
+                        window.location.href = '/login';
+                    }
+                });
+        }
+    });
+
+
+    // 노트 삭제 버튼 클릭 이벤트
+    $(document).on('click', '.delete-note-button', function() {
+        const noteId = $(this).data('note-id');
+        $.post('/notes/delete', { noteId, lectureId }, function(response) {
+            if (response === 'success') {
+                loadNotes();
+            }
+        });
+    });
+
+    // 커뮤니티 게시물 삭제 버튼 클릭 이벤트
+    $(document).on('click', '.delete-community-button', function() {
+        const postId = $(this).data('post-id');
+        $.post('/community/delete', { postId }, function(response) {
+            if (response === 'success') {
+                loadLectureCommunities();
+            }
+        });
+    });
+
+    // 비디오 플레이어 초기화 함수 호출
+    initializePlayer();
+});
+</script>
+
+</body>
+</html>

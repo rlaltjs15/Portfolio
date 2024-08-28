@@ -1,0 +1,85 @@
+.all-community-view-main {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.all-community-view-title {
+    color: #0C1844;
+}
+
+.all-community-view-subtitle {
+    color: #6c757d;
+}
+
+.all-community-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#categories_search_select {
+    width: 120px;
+    height: 38px; /* Adjusted to match input and button height */
+}
+
+.input-search {
+    width: 250px;
+    height: 38px; /* Adjusted to match select and button height */
+}
+
+.btn {
+    padding: 0 20px; /* Adjusted padding to center text vertically */
+    border: 1px solid #0C1844;
+    border-radius: 5px;
+    background-color: white;
+    color: #0C1844;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    height: 38px; /* Adjusted to match input and select height */
+    display: flex;
+    align-items: center; /* Align text vertically */
+    justify-content: center; /* Align text horizontally */
+}
+
+.btn:hover {
+    background-color: #0C1844;
+    color: white;
+}
+
+.all-community-view-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.all-community-view-table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.all-community-view-table th, .all-community-view-table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.all-community-view-table th {
+    background-color: #0C1844;
+    color: white;
+}
+.all-community-view-table a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: #000; /* 기본 텍스트 색상으로 변경 */
+}
+
+.all-community-view-table a:hover {
+    color: #0C1844; /* 링크에 마우스를 올렸을 때 색상 변경 */
+}
+
+
+.write-button {
+    height: 38px; /* Adjusted to match input and select height */
+}

@@ -1,0 +1,43 @@
+.community-update-main {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.community-update-title {
+    color: #0C1844;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #0C1844;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 100px;
+    height: 38px; /* Adjusted to match input height */
+    border: 1px solid #0C1844;
+    color: #0C1844;
+    background-color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Align text vertically */
+    justify-content: center; /* Align text horizontally */
+}
+
+.btn:hover {
+    background-color: #0C1844;
+    color: white;
+}

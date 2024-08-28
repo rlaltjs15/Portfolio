@@ -1,0 +1,48 @@
+.community-write-main {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.community-write-title {
+    color: #0C1844;
+}
+
+.community-write-subtitle {
+    color: #6c757d;
+}
+
+.community-write {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #0C1844;
+}
+
+.form-group input, .form-group textarea {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.btn {
+    width: 100px;
+    height: 38px; /* Adjusted to match input height */
+    border: 1px solid #0C1844;
+    color: #0C1844;
+    background-color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Align text vertically */
+    justify-content: center; /* Align text horizontally */
+}
+
+.btn:hover {
+    background-color: #0C1844;
+    color: white;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main_layout}">
+<body>
+<th:block layout:fragment="content">
+    <div class="container data-sharing-detail-main">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card data-sharing-detail-card">
+                    <div class="card-header data-sharing-detail-header">
+                        <form name="checkForm" id="checkForm" method="post">
+                            <h3 th:text="${datasharing.dataTitle}">제목 없음</h3>
+                            <input type="hidden" name="dataNo" th:value="${datasharing.dataNo}">
+                        </form>
+                    </div>
+                    <div class="card-body data-sharing-detail-body">
+                        <p class="card-text" th:text="${datasharing.dataContent}">내용 없음</p>
+                        <hr>
+                        <ul class="list-unstyled data-sharing-detail-info">
+                            <li>작성자: <span th:text="${datasharing.dataName}">작성자 없음</span></li>
+                            <li>작성일: <span th:text="${#dates.format(datasharing.dataDate, 'yyyy-MM-dd')}">날짜 없음</span></li>
+                            <li>
+                                <a th:href="${datasharing.dataFile}">
+                                    <i class="fas fa-save"></i> 파일 다운로드
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer data-sharing-detail-footer text-center">
+                        <button type="button" class="data-sharing-detail-back-btn" onclick="location.href='/DataSharingView'">목록</button>
+                        <div th:if="${session.loggedInUser != null and session.loggedInUser.role == 'instructor'}">
+                            <button type="button" class="data-sharing-detail-delete-btn" id="data-sharing-detail-datasharingDelete">삭제</button>
+                            <button type="button" class="data-sharing-detail-update-btn" id="data-sharing-detail-datasharingUpdateForm">수정하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 댓글 목록 및 작성 -->
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <div class="card data-sharing-comment-card">
+                    <div class="card-header">
+                        <h5>댓글</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group data-sharing-detail-comment-list">
+                            <!-- 댓글 목록이 여기에 표시됩니다. -->
+                        </ul>
+                        <form id="data-sharing-detail-commentForm" class="mt-4">
+                            <input type="hidden" name="dataNo" th:value="${datasharing.dataNo}">
+                            <div class="form-group">
+                                <label for="data-sharing-detail-commentContent">댓글 내용</label>
+                                <textarea class="form-control" id="data-sharing-detail-commentContent" name="commentContent" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="data-sharing-detail-commentWriter">작성자</label>
+                                <input type="text" class="form-control" id="data-sharing-detail-commentWriter" name="commentWriter" th:value="${session.loggedInUser.name}" readonly>
+                            </div>
+                            <button type="submit" class="data-sharing-detail-comment-btn">댓글 등록</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 창 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content data-sharing-detail-modal-content">
+                <div class="modal-header data-sharing-detail-modal-header">
+                    <h5 class="modal-title" id="myModalLabel">알림</h5>
+                    <button type="button" class="close data-sharing-detail-modal-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn data-sharing-detail-modal-close-btn" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+<script src="/path/to/your/js/data_sharing_detail.js"></script> <!-- 여기에 올바른 경로 설정 -->
+</body>
+</html>

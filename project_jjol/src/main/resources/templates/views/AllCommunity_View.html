@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main_layout}">
+
+<body>
+<th:block layout:fragment="content">
+<div class="container my-5 all-community-view-main" id="community-content">
+    <div class="text-center my-5">
+        <h2 class="all-community-view-title">커뮤니티</h2>
+        <p class="all-community-view-subtitle">필요한 정보를 검색하고 커뮤니티에 참여하세요.</p>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-center align-items-center">
+                <form action="#" id="community_search_form" th:action="@{/AllCommunityView}" method="get" class="d-flex flex-grow-1 justify-content-center align-items-center">
+                    <select name="type" id="categories_search_select" class="form-control mr-2">
+                        <option th:selected="${type == 'username'}" value="username">작성자</option>
+                        <option th:selected="${type == 'title'}" value="title">제목</option>
+                        <option th:selected="${type == 'content'}" value="content">내용</option>
+                    </select>
+                    <input type="text" name="keyword" th:value="${keyword}" placeholder="검색어를 입력해주세요." class="form-control mr-2 input-search">
+                    <button type="submit" class="btn btn-outline-primary search-button ms-2">검색</button>
+                    <a href="/AllCommunityWrite" class="btn btn-outline-primary write-button ms-4">글쓰기</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="all-community-content">
+                <div class="card all-community-view-card">
+                    <table class="table table-hover all-community-view-table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">제목</th>
+                            <th scope="col">작성자</th>
+                            <th scope="col">등록일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="community : ${communityList}">
+                            <td><a th:href="@{/AllCommunityViewDetail(no=${community.allcNo})}"
+                                   th:text="${community.allcTitle}">제목 없음</a></td>
+                            <td th:text="${community.allcName}">작성자 없음</td>
+                            <td th:text="${#dates.format(community.allcDate, 'yyyy-MM-dd')}">날짜 없음</td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(communityList)}">
+                            <td colspan="3" class="text-center">글이 존재하지 않음</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+</body>
+</html>
