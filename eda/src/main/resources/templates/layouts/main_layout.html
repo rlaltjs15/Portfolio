@@ -9,6 +9,14 @@
 </head>
 
 <body>
+	<div class="container">
+		<!--/* header */-->
+		<div th:replace="~{fragments/header::header}"></div>
+		<!--/* content : 요청 마다 변경되는 부분 */-->
+		<div layout:fragment="content"></div>
+		<!--/* footer */-->
+		<div th:replace="~{fragments/footer::footer}"></div>
+	</div>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 
