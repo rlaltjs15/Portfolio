@@ -6,14 +6,100 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Portfolio - Home</title>
+	<!-- 부트스트랩 CSS 파일을 외부 CDN에서 로드 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 	<!-- 개별 페이지 콘텐츠 정의 -->
 	<th:block layout:fragment="content">
-		<h2>Welcome to the Main Page</h2>
-		<p>This is the main page content.</p>
+		<!-- 페이지 콘텐츠 -->
+		<div class="main-content">
+			<section id="about" class="about-section">
+				<div class="about-section-box">
+					<h2 class="about-title">"신입 풀스택 웹 개발자 김희선입니다!"</h2>
+					<p class="about-text">안녕하십니까! 열심히 실력을 쌓아가 신입 풀스택 웹 개발자가 되고 싶은 김희선 입니다.</p>
+					<p class="about-text">저는 프런트엔드와 백엔드 모두에 관심이 있는 풀스택 웹 개발자로, 새로운 기술을 배우고, 문제를 해결하는 것에 즐거움을
+						느낍니다.<br>
+						사용자와 직접 소통하는 인터페이스부터, 안정적인 백엔드를 구축하는 풀스택 개발자로 성장하고, 끊임없이 배워가며, <br>
+						변화하는 기술의 흐름을 따라가는 개발자가 되고
+						싶습니다!
+					</p>
+				</div>
+			</section>
+			<section id="skills">
+				<h2>Skills</h2>
+				<p>주변 지인들이 IT업에서 재미를 느끼고 지인들 모두가 권유하여 고민하던 중 풀스택 웹 개발자 양성과정을 들으며 웹 개발에 대한 기술을 익히고 학습하였습니다.
+					수료 후 Spring프레임 워크를 활용하여 개인 프로젝트와 포트폴리오로 개발 능력을 쌓아왔습니다.
+					간단한 웹 서비스는 혼자서 구현 할 수 있으며, 배포중인 서비스를 계속 업데이트 해나아가고 있습니다.
+					더 나은 웹 개발자가 되기위해 다양한 API를 활용하여 깊은 공부를 하고 있습니다.
+
+					현재 혼자 진행하고 있는 프로젝트는 아마존 AWS를 통해 배포중입니다.
+					EC2와 RDS를 활용한 직접 배포를 경험하고, GitHub를 활용해 프로젝트를 관리하고 커밋을 최대한 세분화하기 위한 노력을 하고 있습니다.
+				</p>
+			</section>
+
+			<section id="projects">
+				<h2>Projects</h2>
+				<div class="project-jjol">
+					<div class="project-jjol-all-box">
+						<div class="project-jjol-img-sub-box">
+							<div class="jjol-img-box"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="experience">
+				<h2>Experience</h2>
+				<p>Content for the Experience section...</p>
+			</section>
+
+			<section id="career">
+				<h2>Career</h2>
+				<p>Content for the Career section...</p>
+			</section>
+
+			<section id="education">
+				<h2>Education</h2>
+				<p>Content for the Education section...</p>
+			</section>
+
+			<section id="blog">
+				<h2>Blog & GitHub</h2>
+				<div class="blog-git-box">
+					<div class="blog-box">
+						<a href="https://blog.naver.com/rlaltjs15" target="_blank" class="image-link">
+							<div class="image-container">
+								<img class="naver-blog-img" src="/img/blog 화면.png" alt="Naver Blog">
+								<div class="overlay">
+									<div class="blog-text">Naver Blog</div>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="github-box">
+						<a href="https://github.com/rlaltjs15" target="_blank" class="image-link">
+							<div class="image-container">
+								<img class="git-hub-img" src="/img/github 화면.png" alt="GitHub">
+								<div class="overlay">
+									<div class="blog-text">GitHub</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<section id="contact">
+				<h2>Contact</h2>
+				<p>Content for the Contact section...</p>
+			</section>
+		</div>
 	</th:block>
+
+	<!-- Bootstrap JavaScript를 외부 CDN에서 로드 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

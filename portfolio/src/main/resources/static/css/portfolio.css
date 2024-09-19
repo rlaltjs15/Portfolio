@@ -1,0 +1,143 @@
+/* 메인 페이지 콘텐츠 스타일 */
+.main-page-heading {
+	font-size: 2rem;
+	font-weight: bold;
+	color: #343a40;
+	margin-bottom: 1rem;
+}
+
+section {
+	padding: 350px 30px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1200px;
+}
+
+/* 스크롤 부드럽게 설정 */
+html {
+	scroll-behavior: smooth;
+}
+
+/* 전체 섹션 스타일 */
+.about-section {
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 300px 0;
+}
+
+/* 'About' 섹션의 박스 스타일 */
+.about-section-box {
+	margin: 0 auto;
+	padding: 0px 20px;
+	max-width: 800px;
+	text-align: center;
+}
+
+/* 제목 스타일 */
+.about-title {
+	font-family: 'Arial', sans-serif;
+	font-size: 2rem;
+	color: #333;
+	margin-bottom: 20px;
+	letter-spacing: 1.5px;
+	animation: textFadeIn 2s ease-in-out;
+	animation-delay: 0.8s;
+	text-align: center;
+	/* 가운데 정렬 */
+}
+
+/* 본문 텍스트 스타일 */
+.about-text {
+	font-size: 0.8rem;
+	line-height: 1.8;
+	color: #555;
+	margin-bottom: 20px;
+	font-family: 'Arial', sans-serif;
+	animation: textFadeIn 2s ease-in-out;
+	animation-delay: 0.8s;
+	text-align: center;
+}
+
+/* 애니메이션 효과 */
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes textFadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* 블로그 및 깃허브 섹션 스타일 */
+.blog-git-box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin-top: 30px;
+}
+
+.blog-box,
+.github-box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 20px;
+}
+
+.image-container {
+	position: relative;
+	display: inline-block;
+}
+
+.naver-blog-img,
+.git-hub-img {
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+	object-fit: contain;
+	margin-bottom: 10px;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.image-container:hover .overlay {
+	opacity: 1;
+}
+
+.blog-text {
+	font-size: 1.2rem;
+}
+
+.image-link {
+	text-decoration: none;
+}
+
