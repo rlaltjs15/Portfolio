@@ -13,6 +13,7 @@ section {
 	max-width: 1200px;
 }
 
+
 /* 스크롤 부드럽게 설정 */
 html {
 	scroll-behavior: smooth;
@@ -23,7 +24,6 @@ html {
 	max-width: 800px;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 300px 0;
 }
 
 /* 'About' 섹션의 박스 스타일 */
@@ -32,6 +32,7 @@ html {
 	padding: 0px 20px;
 	max-width: 800px;
 	text-align: center;
+	margin-top: 20px;
 }
 
 /* 제목 스타일 */
@@ -141,3 +142,180 @@ html {
 	text-decoration: none;
 }
 
+
+
+/* 섹션 제목 스타일 */
+#projects h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+#projects p {
+    text-align: center;
+    font-size: 15px;
+}
+
+/* 프로젝트 전체 박스 스타일 */
+.project-jjol {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* 프로젝트 박스 스타일 */
+.project-jjol-all-box {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* 프로젝트 제목 박스 스타일 */
+.jjol-project-title {
+    padding: 20px;
+}
+
+.jjol-project-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.jjol-project-title p {
+    margin: 5px 0 0;
+    color: #666;
+}
+
+/* 하위 섹션 스타일 */
+.project-jjol-all-sub {
+    display: flex;
+    flex-direction: row;
+}
+
+/* 이미지 서브 박스 스타일 */
+.project-jjol-img-sub-box {
+    flex: 1;
+    padding: 20px;
+}
+
+.jjol-img-box {
+    width: 100%;
+    height: 200px; /* 원하는 높이로 조정 */
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    background-color: #eaeaea;
+}
+
+/* 프로젝트 텍스트 박스 스타일 */
+.jjol-project-text-box {
+    flex: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 프로젝트 설명 스타일 */
+.jjol-project-text {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* 기술 스킬 리스트 스타일 */
+.jjol-project-skill {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* 기술 스킬 개별 스타일 */
+.jjol-project-skill div {
+    background-color: white;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    color: black;
+}
+
+/* 기술 스킬 색상 설정 */
+.git { background-color: #f15025; color: white; }
+.github { background-color: #181717; color: white; }
+.gradle { background-color: #02303a; color: white; }
+.spring { background-color: #6db33f; color: white; }
+.javascript { background-color: #f7df1e; color: #000; }
+.java { background-color: #007396; color: white; }
+.mysql { background-color: #00618a; color: white; }
+.awss3 { background-color: #569a31; color: white; }
+.googlecloud { background-color: #4285f4; color: white; }
+.jquery { background-color: #0769ad; color: white; }
+.bootstrap { background-color: #563d7c; color: white; }
+.thymeleaf { background-color: #003300; color: white; }
+.ajax { background-color: #00a5e0; color: white; }
+.kakaopay { background-color: #f7e300; color: black; }
+.nginx { background-color: #009639; color: white; }
+.portone { background-color: #0033cc; color: white; }
+.mysqlworkbench { background-color: #00758f; color: white; }
+.fliki { background-color: #c6c6c6; color: black; }
+.websocket { background-color: #0074d9; color: white; }
+.dialogflow { background-color: #f9a825; color: black; }
+
+#skills h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+#skills p {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.skills-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.skills-category {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+	text-align: center;
+}
+
+.skills-category h3 {
+    font-size: 1rem;
+	font-weight: bold;
+    margin-bottom: 15px;
+    color: #343a40;
+}
+
+.skills-category ul {
+    list-style-type: none;
+    padding: 0;
+	margin-top: 30px;
+}
+
+.skills-category li {
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #495057;
+	cursor: pointer;
+}
+.skillbox{
+	margin-top: -230px;
+}
