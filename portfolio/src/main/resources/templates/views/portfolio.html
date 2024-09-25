@@ -45,7 +45,7 @@
 								<li><span data-bs-toggle="tooltip" title="70%">Maven</span></li>
 								<li><span data-bs-toggle="tooltip" title="85%">MySQL</span></li>
 								<li><span data-bs-toggle="tooltip" title="65%">JPA</span></li>
-								<li><span data-bs-toggle="tooltip" title="60%">MyBatis</span></li>
+								<li><span data-bs-toggle="tooltip" title="80%">MyBatis</span></li>
 								<li><span data-bs-toggle="tooltip" title="80%">Git</span></li>
 								<li><span data-bs-toggle="tooltip" title="80%">GitHub</span></li>
 								<li><span data-bs-toggle="tooltip" title="50%">Docker</span></li>
@@ -86,45 +86,95 @@
 			</section>
 
 			<section id="projects">
-				<h2>Projects</h2>
-				<div class="project-jjol">
-					<div class="project-jjol-all-box">
-						<div class="jjol-project-title">
-							<h2>Jjol?</h2>
-							<p>2024.01.27 ~ 2024.07.22 (4人)</p>
-						</div>
-						<div class="project-jjol-all-sub">
-							<div class="project-jjol-img-sub-box">
-								<div class="jjol-img-box"></div>
+				<div class="project-box">
+					<h2>Projects</h2>
+					<div class="project-jjol">
+						<div class="project-jjol-all-box">
+							<div class="jjol-project-title">
+								<h2>Jjol?</h2>
+								<p class="jjol-project-sub-title">2024.01.27 ~ 2024.07.22 (4人)</p>
 							</div>
-							<div class="jjol-project-text-box">
-								<div class="jjol-project-text">
-									<p><strong>언제 어디서나 배울 수 있는 교육 제공</strong>
-										감염질환으로 인해 대면 교육이 어려워지면서, 사용자들이 집에서도 안전하게 배울 수 있는 온라인 강의 플랫폼을
-										제공하고자 했습니다. 이 플랫폼을 통해서 누구나 쉽게 접근할 수 있는 교육을 제공하며,
-										교육의 질을 높이는 것이 목표입니다. </p>
+							<div class="project-jjol-all-sub">
+								<div class="project-jjol-img-sub-box">
+									<div class="jjol-img-box">
+										<button class="prev-button"><</button>
+												<img class="jjol-img" src="/img/jjol/강의리스트.png" data-title="강의 리스트 페이지">
+												<img class="jjol-img" src="/img/jjol/강의상세정보.png"
+													data-title="강의 상세 정보보기 페이지">
+												<img class="jjol-img" src="/img/jjol/강의상세페이지.png"
+													data-title="강의 상세 페이지">
+												<img class="jjol-img" src="/img/jjol/공지사항.png" data-title="공지사항 페이지">
+												<img class="jjol-img" src="/img/jjol/로그인.png" data-title="로그인 페이지">
+												<img class="jjol-img" src="/img/jjol/마이페이지.png" data-title="마이페이지 페이지">
+												<img class="jjol-img" src="/img/jjol/메인페이지.png" data-title="메인페이지">
+												<img class="jjol-img" src="/img/jjol/비디오플레이어.png" data-title="비디오 플레이어">
+												<img class="jjol-img" src="/img/jjol/비디오플레이어상세.png"
+													data-title="비디오 플레이어 상세보기 페이지">
+												<img class="jjol-img" src="/img/jjol/수료증.png" data-title="수료증">
+												<img class="jjol-img" src="/img/jjol/알림서비스.png" data-title="알람서비스">
+												<img class="jjol-img" src="/img/jjol/자료실.png" data-title="자료실 페이지">
+												<img class="jjol-img" src="/img/jjol/채팅방.png" data-title="채팅방">
+												<img class="jjol-img" src="/img/jjol/커뮤니티.png" data-title="커뮤니티 페이지">
+												<img class="jjol-img" src="/img/jjol/플레이어.png" data-title="플레이어">
+												<img class="jjol-img" src="/img/jjol/회원가입.png" data-title="회원가입 페이지">
+												<button class="next-button">></button>
+									</div>
+									<!-- 텍스트를 표시할 요소 -->
+									<div id="image-tooltip" class="tooltip"></div>
 								</div>
-								<div class="jjol-project-skill">
-									<div class="git">Git</div>
-									<div class="github">GitHub</div>
-									<div class="gradle">Gradle</div>
-									<div class="spring">Spring</div>
-									<div class="javascript">JavaScript</div>
-									<div class="java">JAVA</div>
-									<div class="mysql">MySQL</div>
-									<div class="awss3">AWS | S3</div>
-									<div class="googlecloud">Google Cloud</div>
-									<div class="jquery">Jquery</div>
-									<div class="bootstrap">BootStrap</div>
-									<div class="thymeleaf">Thymeleaf:3.0.12버전</div>
-									<div class="ajax">AJAX</div>
-									<div class="kakaopay">Kakao Pay</div>
-									<div class="nginx">NGINX</div>
-									<div class="portone">PortOne</div>
-									<div class="mysqlworkbench">MySQL WorkBench:8버전 이상</div>
-									<div class="fliki">Fliki</div>
-									<div class="websocket">websocket</div>
-									<div class="dialogflow">Dialogflow</div>
+								<div class="jjol-project-text-box">
+									<div class="jjol-project-text">
+										<p class="jjol-heesun-skill">담당한 기능 설명</p>
+										<p class="jjol-text">
+											<strong>단체 채팅방</strong><br>
+											로그인 및 인증 : 유저는 로그인 후 채팅방에 입장하여 채팅에 참여 할 수 있게 구현했습니다.<br>
+											실시간 채팅 : 로그인 한 모든 유저간 실시간으로 메시지를 송수신 하도록 구현했습니다.<br>
+											나가기 기능 : 채팅방에서 나가기 버튼을 누를 시 채팅방 안에 있는 모든 유저들이 나간 걸 확인 할 수 있도록 구현했습니다.<br>
+										</p>
+										<p class="jjol-text">
+											<strong>커뮤니티 게시판</strong><br>
+											글 작성/ 수정/ 삭제 : 로그인한 유저는 자유롭게 글 작성, 수정, 삭제 기능을 구현 했습니다.<br>
+											댓글 기능 : 각 게시글에 댓글 작성 및 삭제 기능을 구현 했습니다.<br>
+										</p>
+										<p class="jjol-text">
+											<strong>자료실 게시판</strong><br>
+											강사 기능 : 강사는 글 작성, 첨부 파일 업로드를 올려 교육 자료 제공 기능을 구현 했습니다.<br>
+											학생 기능 : 학생은 강사가 올린 글과 파일을 확인하고 다운로드가 가능하게 기능을 구현 했습니다.<br>
+										</p>
+										<p class="jjol-text">
+											<strong>영상제작</strong><br>
+											Fliki 활용 : AI 텍스트-음성 변환 및 이미지-동영상 기능으로 강의 콘텐츠를 제작 했습니다.<br>
+										</p>
+									</div>
+									<div class="jjol-project-skill">
+										<div class="git">Git</div>
+										<div class="github">GitHub</div>
+										<div class="gradle">Gradle</div>
+										<div class="spring">Spring</div>
+										<div class="javascript">JavaScript</div>
+										<div class="java">JAVA</div>
+										<div class="mysql">MySQL</div>
+										<div class="awss3">AWS | S3</div>
+										<div class="googlecloud">Google Cloud</div>
+										<div class="jquery">Jquery</div>
+										<div class="bootstrap">BootStrap</div>
+										<div class="thymeleaf">Thymeleaf:3.0.12버전</div>
+										<div class="ajax">AJAX</div>
+										<div class="kakaopay">Kakao Pay</div>
+										<div class="nginx">NGINX</div>
+										<div class="portone">PortOne</div>
+										<div class="mysqlworkbench">MySQL WorkBench:8버전 이상</div>
+										<div class="fliki">Fliki</div>
+										<div class="websocket">websocket</div>
+										<div class="dialogflow">Dialogflow</div>
+									</div>
+									<div class="project-jjol-file">
+										<a href="/file/jjol/담당한 기능 구현.pdf" download>담당한 기능 구현(김희선) Download PDF</a><br>
+										<a href="/file/jjol/erd.pdf" download>Project Jjol Download PDF</a><br>
+										<a href="/file/jjol/Jjol-ppt.pdf" download>ERD Download PDF</a><br>
+										<a href="/file/jjol/기능 분담.pdf" download>기능 분담 Download PDF</a><br>
+										<a href="/file/jjol/회의록.pdf" download>회의록 Download PDF</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -154,7 +204,7 @@
 					<div class="blog-box">
 						<a href="https://blog.naver.com/rlaltjs15" target="_blank" class="image-link">
 							<div class="image-container">
-								<img class="naver-blog-img" src="/img/blog 화면.png" alt="Naver Blog">
+								<img class="naver-blog-img" src="/img/blog/blog 화면.png" alt="Naver Blog">
 								<div class="overlay">
 									<div class="blog-text">Naver Blog</div>
 								</div>
@@ -164,7 +214,7 @@
 					<div class="github-box">
 						<a href="https://github.com/rlaltjs15" target="_blank" class="image-link">
 							<div class="image-container">
-								<img class="git-hub-img" src="/img/github 화면.png" alt="GitHub">
+								<img class="git-hub-img" src="/img/blog/github 화면.png" alt="GitHub">
 								<div class="overlay">
 									<div class="blog-text">GitHub</div>
 								</div>
